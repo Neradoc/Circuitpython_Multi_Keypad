@@ -1,8 +1,11 @@
+# SPDX-FileCopyrightText: 2017 Scott Shawcroft, written for Adafruit Industries
+# SPDX-FileCopyrightText: Copyright (c) 2023 Neradoc
+#
+# SPDX-License-Identifier: Unlicense
+
+import asyncio
 import board
 import keypad
-import time
-import asyncio
-from adafruit_ticks import ticks_ms, ticks_less
 from multi_macropad import MultiKeypad
 
 ################################################################
@@ -16,12 +19,14 @@ keys2 = keypad.Keys((board.GP11,), value_when_pressed=False, pull=True)
 # Multi Keypad
 ################################################################
 
+
 async def main():
-	mkp = MultiKeypad(keys1, keys2)
-	while True:
-		event = mkp.next_event()
-		if event:
-			print(event)
-		await asyncio.sleep(1)
+    mkp = MultiKeypad(keys1, keys2)
+    while True:
+        event = mkp.events.get()
+        if event:
+            print(event)
+        await asyncio.sleep(0.1)
+
 
 asyncio.run(main())
