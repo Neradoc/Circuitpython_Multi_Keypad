@@ -2,8 +2,8 @@ Introduction
 ============
 
 
-.. image:: https://readthedocs.org/projects/circuitpython-multi-macropad/badge/?version=latest
-    :target: https://circuitpython-multi-macropad.readthedocs.io/
+.. image:: https://readthedocs.org/projects/multi-keypad-for-circuitpython/badge/?version=latest
+    :target: https://multi-keypad-for-circuitpython.readthedocs.io/
     :alt: Documentation Status
 
 
