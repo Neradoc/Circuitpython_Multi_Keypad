@@ -13,8 +13,8 @@ Introduction
     :alt: Discord
 
 
-.. image:: https://github.com/Neradoc/CircuitPython_multi_macropad/workflows/Build%20CI/badge.svg
-    :target: https://github.com/Neradoc/CircuitPython_multi_macropad/actions
+.. image:: https://github.com/Neradoc/Circuitpython_Multi_Keypad/workflows/Build%20CI/badge.svg
+    :target: https://github.com/Neradoc/Circuitpython_Multi_Keypad/actions
     :alt: Build Status
 
 
