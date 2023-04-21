@@ -48,7 +48,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "CircuitPython multi_macropad Library"
+project = "CircuitPython Multi Keypad Library"
 creation_year = "2023"
 current_year = str(datetime.datetime.now().year)
 year_duration = (
@@ -137,7 +137,7 @@ html_static_path = ["_static"]
 html_favicon = "_static/favicon.ico"
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "CircuitPython_Multi_macropad_Librarydoc"
+htmlhelp_basename = "CircuitPython_Multi_Keypad_Librarydoc"
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -158,8 +158,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "CircuitPython_multi_macropad_Library.tex",
-        "CircuitPython multi_macropad Library Documentation",
+        "CircuitPython_multi_keypad_Library.tex",
+        "CircuitPython Multi Keypad Library Documentation",
         author,
         "manual",
     ),
@@ -172,8 +172,8 @@ latex_documents = [
 man_pages = [
     (
         master_doc,
-        "CircuitPython_multi_macropad_Library",
-        "CircuitPython multi_macropad Library Documentation",
+        "CircuitPython_multi_keypad_Library",
+        "CircuitPython Multi Keypad Library Documentation",
         [author],
         1,
     ),
@@ -187,10 +187,10 @@ man_pages = [
 texinfo_documents = [
     (
         master_doc,
-        "CircuitPython_multi_macropad_Library",
-        "CircuitPython multi_macropad Library Documentation",
+        "CircuitPython_multi_keypad_Library",
+        "CircuitPython Multi Keypad Library Documentation",
         author,
-        "CircuitPython_multi_macropad_Library",
+        "CircuitPython_multi_keypad_Library",
         "One line description of project.",
         "Miscellaneous",
     ),
