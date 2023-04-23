@@ -53,7 +53,7 @@ following command to install:
 
 .. code-block:: shell
 
-    circup install multi_macropad
+    circup install multi_keypad
 
 Or the following command to update an existing version:
 
@@ -67,7 +67,7 @@ Usage Example
 .. code-block:: python
 
     import board
-    from multi_macropad import MultiKeypad
+    from multi_keypad import MultiKeypad
     keys1 = keypad.Keys((board.GP3, board.GP7), value_when_pressed=False, pull=True)
     keys2 = keypad.Keys((board.GP11,), value_when_pressed=False, pull=True)
 
@@ -80,7 +80,7 @@ Usage Example
 
 Documentation
 =============
-API documentation for this library can be found on `Read the Docs <https://circuitpython-multi-macropad.readthedocs.io/>`_.
+API documentation for this library can be found on `Read the Docs <https://multi-keypad-for-circuitpython.readthedocs.io/>`_.
 
 For information on building library documentation, please check out
 `this guide <https://learn.adafruit.com/creating-and-sharing-a-circuitpython-library/sharing-our-docs-on-readthedocs#sphinx-5-1>`_.
@@ -89,5 +89,5 @@ Contributing
 ============
 
 Contributions are welcome! Please read our `Code of Conduct
-<https://github.com/Neradoc/CircuitPython_multi_macropad/blob/HEAD/CODE_OF_CONDUCT.md>`_
+<https://github.com/Neradoc/CircuitPython_multi_keypad/blob/HEAD/CODE_OF_CONDUCT.md>`_
 before contributing to help this project stay welcoming.

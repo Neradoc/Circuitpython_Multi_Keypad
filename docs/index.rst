@@ -24,7 +24,7 @@ Table of Contents
 .. toctree::
     :caption: Other Links
 
-    Download from GitHub <https://github.com/Neradoc/CircuitPython_multi_macropad/releases/latest>
+    Download from GitHub <https://github.com/Neradoc/CircuitPython_multi_keypad/releases/latest>
     Download Library Bundle <https://circuitpython.org/libraries>
     CircuitPython Reference Documentation <https://docs.circuitpython.org>
     CircuitPython Support Forum <https://forums.adafruit.com/viewforum.php?f=60>

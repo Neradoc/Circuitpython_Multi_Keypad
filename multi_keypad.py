@@ -4,7 +4,7 @@
 #
 # pylint: disable=unsubscriptable-object
 """
-`multi_macropad`
+`multi_keypad`
 ================================================================================
 
 A library to manage multiple keypad instances (and compatible) as a single event queue.
@@ -26,7 +26,7 @@ Implementation Notes
 from adafruit_ticks import ticks_less
 
 __version__ = "0.0.0+auto.0"
-__repo__ = "https://github.com/Neradoc/CircuitPython_multi_macropad.git"
+__repo__ = "https://github.com/Neradoc/CircuitPython_multi_keypad.git"
 
 
 class Event:

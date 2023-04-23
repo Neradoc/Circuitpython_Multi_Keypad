@@ -11,20 +11,20 @@ requires = [
 ]
 
 [project]
-name = "circuitpython-multi-macropad"
+name = "circuitpython-multi-keypad"
 description = "A library to manage multiple keypad instances (and compatible) as a single event queue."
 version = "0.0.0+auto.0"
 readme = "README.rst"
 authors = [
     {name = "Neradoc"}
 ]
-urls = {Homepage = "https://github.com/Neradoc/CircuitPython_multi_macropad"}
+urls = {Homepage = "https://github.com/Neradoc/CircuitPython_multi_keypad"}
 keywords = [
     "adafruit",
     "blinka",
     "circuitpython",
     "micropython",
-    "multi_macropad",
+    "multi_keypad",
 ]
 license = {text = "MIT"}
 classifiers = [
@@ -40,7 +40,7 @@ dynamic = ["dependencies", "optional-dependencies"]
 [tool.setuptools]
 # TODO: IF LIBRARY FILES ARE A PACKAGE FOLDER,
 #       CHANGE `py_modules = ['...']` TO `packages = ['...']`
-py-modules = ["multi_macropad"]
+py-modules = ["multi_keypad"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}

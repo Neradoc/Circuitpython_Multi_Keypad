@@ -6,7 +6,7 @@
 import asyncio
 import board
 import keypad
-from multi_macropad import MultiKeypad
+from multi_keypad import MultiKeypad
 
 ################################################################
 # The keypad part
