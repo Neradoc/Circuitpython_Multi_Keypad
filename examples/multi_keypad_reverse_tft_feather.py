@@ -3,9 +3,9 @@
 #
 # SPDX-License-Identifier: Unlicense
 
+import time
 import board
 import keypad
-import time
 from multi_keypad import MultiKeypad
 
 ################################################################
