@@ -35,6 +35,7 @@ class Event:
 
     :param int keypad: The ID number of the keypad that generated that event.
     :param obj event: The original keypad event.
+    :param int offset: The offset added to the key_number (default 0).
     """
 
     def __init__(self, keypad, event, offset=0):
@@ -58,7 +59,11 @@ class Event:
     def __hash__(self) -> int:
         """Returns a hash for the Event, so it can be used in dictionaries, etc.
         Assumes less than 8192 keys on the keyboard"""
-        return self.pad_number << 14 + self.key_number << 1 + int(self.pressed)
+        return (
+            self.pad_number
+            << 14 + self.original_event.key_number
+            << 1 + int(self.pressed)
+        )
 
     def __repr__(self):
         status = "pressed" if self.pressed else "released"
@@ -103,14 +108,44 @@ class EventMultiQueue:
             return Event(padnum, next_event[2], self.offsets[padnum])
         return None
 
+    def get_into(self, event: Event) -> bool:
+        """
+        Puts the next event into the passed object. This does not avoid
+        allocating storage because we have to cache events from the underlying
+        keypads anyway. Only there for compatibility.
+        """
+        if not isinstance(event, Event):
+            raise ValueError("Event must be of class multi_keypad.Event")
+        new_event = self.get()
+        if not new_event:
+            return False
+
+        event.pad_number = new_event.pad_number
+        event.timestamp = new_event.timestamp
+        event.pressed = new_event.pressed
+        event.released = new_event.released
+        event.key_number = new_event.key_number
+        event.original_event = new_event.original_event
+        return True
+
     def clear(self) -> None:
-        """Clear any queued key transition events."""
+        """
+        Clear any queued key transition events.
+        Also sets ``overflowed`` to ``False``.
+        """
         for keypad in self.keypads:
             keypad.clear()
 
+    def overflowed(self) -> bool:
+        """
+        ``True`` if an event could not be added to the event queue because
+        it was full. (read-only) Set to ``False`` by ``clear()``.
+        """
+        return any(kp.overflowed for kp in self.keypads)
+
     def __bool__(self) -> bool:
         """
-        True if len() is greater than zero.
+        ``True`` if ``len()`` is greater than zero.
         This is an easy way to check if the queue is empty.
         """
         return any(self.keypads.events)
@@ -118,7 +153,7 @@ class EventMultiQueue:
     def __len__(self) -> int:
         """
         Return the number of events currently in the queue.
-        Used to implement len().
+        Used to implement ``len()``.
         """
         return sum(len(x) for x in self.keypads.events)
 
