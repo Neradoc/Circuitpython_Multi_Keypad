@@ -37,12 +37,12 @@ class Event:
     :param obj event: The original keypad event.
     """
 
-    def __init__(self, keypad, event):
+    def __init__(self, keypad, event, offset=0):
         self.pad_number = keypad
         self.timestamp = event.timestamp
         self.pressed = event.pressed
         self.released = event.released
-        self.key_number = event.key_number
+        self.key_number = event.key_number + offset
         self.original_event = event
 
     def __eq__(self, other: object) -> bool:
@@ -72,6 +72,7 @@ class EventMultiQueue:
 
     def __init__(self, keypads):  # , max_events=64):
         self.keypads = keypads
+        self.offsets = [0] + [pad.key_count for pad in keypads]
         # The next event from each keypad queue
         self.next_events = [None] * len(keypads)
 
@@ -80,25 +81,26 @@ class EventMultiQueue:
         Return the next key transition event.
         Return None if no events are pending.
         """
-        old_event = None
+        next_event = None
         # collate one event per keypad if none already
-        for index, keypad in enumerate(self.keypads):
-            if self.next_events[index] is None:
+        for padnum, keypad in enumerate(self.keypads):
+            if self.next_events[padnum] is None:
                 new_event = keypad.events.get()
                 if new_event is not None:
                     # record that event
-                    new_event = (new_event.timestamp, index, new_event)
-                    self.next_events[index] = new_event
+                    new_event = (new_event.timestamp, padnum, new_event)
+                    self.next_events[padnum] = new_event
             else:
-                new_event = self.next_events[index]
+                new_event = self.next_events[padnum]
             # keep it if it's the oldest
             if new_event is not None:
-                if old_event is None or (ticks_less(new_event[0], old_event[0])):
-                    old_event = new_event
+                if next_event is None or ticks_less(new_event[0], next_event[0]):
+                    next_event = new_event
         # return (and remove) the event
-        if old_event is not None:
-            self.next_events[old_event[1]] = None
-            return Event(old_event[1], old_event[2])
+        if next_event is not None:
+            self.next_events[next_event[1]] = None
+            padnum = next_event[1]
+            return Event(padnum, next_event[2], self.offsets[padnum])
         return None
 
     def clear(self) -> None:
@@ -129,6 +131,7 @@ class MultiKeypad:
 
     def __init__(self, *keypads):
         self.events = EventMultiQueue(keypads)
+        self.key_count = sum(pad.key_count for pad in keypads)
 
     def next_event(self):
         """Deprecated method to get the next event"""
