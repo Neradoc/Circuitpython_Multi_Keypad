@@ -14,7 +14,7 @@ from multi_keypad import MultiKeypad
 
 # buttons D1 and D2 are pulled down (for wake up purposes)
 keys1 = keypad.Keys((board.D1, board.D2), value_when_pressed=True, pull=True)
-# button D0 is pulled down (because it's the BOOT button)
+# button D0 is pulled up (because it's the BOOT button)
 keys2 = keypad.Keys((board.BUTTON,), value_when_pressed=False, pull=True)
 
 ################################################################
